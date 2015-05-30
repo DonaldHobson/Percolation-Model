@@ -2,36 +2,40 @@ from tkinter import *
 from random import random
 import time
 master = Tk()
-w = Canvas(master, width=800, height=800)
-w.pack()
+
 
 ##w.create_line(0, 0, 200, 100)
 ##w.create_line(0, 100, 200, 0, fill="red", dash=(4, 4))
 ##
 
-#bar=w.create_rectangle(0, 20, 100, 10, fill="blue")
+
 gs=2
 relsx=[-1,1,0,0]
 relsy=[0,0,-1,1]
 rln=len (relsx)
 s=400
 grid=[]
+sz=gs*s
+
+w = Canvas(master, width=sz, height=sz)
+w.pack()
+bar=w.create_rectangle(0, 0, sz, sz, fill="black")
 #0=blocked
 #1=empty
 #2=full
 for i in range(s):
     grid.append([])
-    #w.itemconfig(bar, width=i)
+    w.coords(bar,    i*gs,0  ,sz,sz)
+    master.update()
     for j in range(s):
         
         if random()>0.593:
             grid[i].append(0)
+            w.create_rectangle(i*gs+1, j*gs+1, (i+1)*gs,(j+1)*gs , fill="grey" ,outline="grey")
         else:
             grid[i].append(1)
-for i in range(s):
-    for j in range(s):
-        if grid[i][j]==0:
-            w.create_rectangle(i*gs+1, j*gs+1, (i+1)*gs,(j+1)*gs , fill="grey" ,outline="grey")
+w.delete(bar)
+            
 cnge=[]
 for i in range(s):
     if grid[i][0]==1:
