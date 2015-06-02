@@ -65,4 +65,4 @@ while len(cnge)>0:
     #mainloop()
     #time.sleep(0.05)
     master.update()
-
+time.sleep(36000)
